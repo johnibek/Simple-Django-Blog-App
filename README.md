@@ -27,7 +27,7 @@ Install ``django`` and ``mysqlclient``:
 	$ pip install mysqlclient
 	-------------------------
 
-Making migrations:
+Make migrations:
 
 	$ python manage.py makemigrations
 	--------------------------------
