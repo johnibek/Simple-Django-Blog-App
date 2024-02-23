@@ -1,0 +1,8 @@
+# IDE files
+.idea/
+
+# Virtual Environment
+.venv/
+
+# Database files
+*.sqlite3
