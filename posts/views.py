@@ -3,7 +3,6 @@ from django.views import generic
 from .models import Post
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
-from django import forms
 
 class PostListView(generic.ListView):
     model = Post
@@ -48,15 +47,29 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView
     fields = ['title', 'body']
 
     def test_func(self):
-        post = self.get_object()
+        post_object = self.get_object()
         user = self.request.user
-        if user == post.author:
+        if user == post_object.author:
             return True
         else:
             return False
 
     def get_success_url(self):
         return reverse_lazy("posts:detail", kwargs={'pk': self.object.pk})
+    
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+
+        form.fields['title'].widget.attrs['class'] = 'form-control'
+        form.fields['title'].label = ''
+        form.fields['title'].widget.attrs['placeholder'] = 'Title'
+
+        form.fields['body'].widget.attrs['class'] = 'form-control'
+        form.fields['body'].label = ''
+        form.fields['body'].widget.attrs['placeholder'] = 'Body'
+
+        return form
+    
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     model = Post
@@ -66,9 +79,11 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView
     success_url = '/'
 
     def test_func(self):
-        post = self.get_object()
+        post_object = self.get_object()
         user = self.request.user
-        if user == post.author:
+        if user == post_object.author:
             return True
         else:
             return False
+
+

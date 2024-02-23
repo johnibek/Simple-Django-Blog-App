@@ -10,8 +10,7 @@
         {% for post in posts %}
             <div class="card mt-3">
                 <div class="card-body">
-                    {{ post.title }}... <small><a class="" href="{{ post.get_absolute_url }}">Read more</a>
-                    </small>
+                    {{ post.title }}... <small> <a href="{{ post.get_absolute_url }}">Read more</a> </small>
                 </div>
             </div>
         {% endfor %}
