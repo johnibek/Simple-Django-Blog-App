@@ -85,5 +85,4 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView
             return True
         else:
             return False
-
-
+        
