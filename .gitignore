@@ -1,8 +1,10 @@
-# IDE files
+# Python files
 .idea/
+###
+__pycache__/
 
-# Virtual Environment
-.venv/
+# database
+db.sqlite3
 
-# Database files
-*.sqlite3
+# virtual environment
+venv/
